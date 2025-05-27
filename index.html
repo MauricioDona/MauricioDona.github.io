@@ -1,36 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mauricio Dona || Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trompe-l'oeil Interactivo</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .container {
+      width: 90vw;
+      max-width: 400px;
+      height: 80vh;
+      perspective: 1000px;
+    }
+    .card {
+      width: 100%;
+      height: 100%;
+      background: url('https://www.ambiance-sticker.com/photo/sticker-trompe-loeil-vue-entre-montagnes-et-lac-xml-420_411_3365-24484.jpg') center/cover no-repeat;
+      border-radius: 20px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      transition: transform 0.1s ease-out;
+      transform-style: preserve-3d;
+    }
+  </style>
 </head>
 <body>
-    <main>
-        <header>
-            <div>
-                <h2>Dona</h2>
-            </div>
-            <nav>
-                <ul>
-                    <li class="nav-item">
-                        <a href=""><h4>HOME</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href=""><h4>ABOUT ME</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href=""><h4>PROYECTS</h4></a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <section></section>
-        <section></section>
-        <section></section>
-        <footer></footer>
-    </main>
-    <script src="main.js"></script>
+  <div class="container">
+    <div class="card" id="card"></div>
+  </div>
+
+  <script>
+    const card = document.getElementById('card');
+    window.addEventListener('deviceorientation', (e) => {
+      const x = e.gamma || 0;
+      const y = e.beta || 0;
+      card.style.transform = `rotateY(${x / 8}deg) rotateX(${-y / 8}deg)`;
+    });
+  </script>
 </body>
 </html>
